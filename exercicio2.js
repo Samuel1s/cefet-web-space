@@ -48,3 +48,26 @@ const imagens = [
     }
   ];
 
+
+  document.querySelector("#anterior").addEventListener('click', uptBanner);
+  document.querySelector("#proximo").addEventListener('click', uptBanner);
+
+  let imagemAtual = 0;
+
+  function uptBanner(e){
+    const contador = e.currentTarget.id == 'proximo' ? 1 : -1;
+    const bannerEl = document.querySelector('#slide');
+    
+    imagemAtual += contador;
+
+    if (imagemAtual < 0) {
+      imagemAtual = imagens.length - 1;
+      
+    } else if (imagemAtual > imagens.length - 1) {
+      imagemAtual = 0;
+    
+    } 
+  
+    bannerEl.src = servidorDasImagens + '/' + imagens[imagemAtual].arquivo;
+    bannerEl.alt = imagens[imagemAtual].descricao;
+  }
